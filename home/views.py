@@ -52,8 +52,7 @@ def welcome(request):
 def logout_user(request):
     if 'username' in request.session :
         del request.session['username']
-    #logout(request)
-    return redirect('homepage')
+        return redirect('homepage')
 
 
 
@@ -76,7 +75,7 @@ def signuppage(request):
 
 @never_cache    #admin lologin page----------------------
 def admin_login(request) :
-    if 'admin_name' in request.session :
+    if 'username' in request.session :
         return redirect('admin_userlist')
     else :
         if request.method=='POST':
@@ -85,32 +84,33 @@ def admin_login(request) :
             user=authenticate(request,username=admin_name,password=admin_password)
             #if admin_password != 'siju11':
             if user is not None :
-                #request.session['admin_name'] = admin_name
+                request.session['username'] = admin_name
                 return redirect('admin_userlist')
-                
             else:
                 return HttpResponse('invalid password or username')                         
-                
-        return render(request,'adminlogin.html')
+        else :
+            return render(request,'adminlogin.html')
 
 
 
 
 def logout_admin(request):
-    #if 'admin_name' in request.session :
-        print('admin seession delected')
+    if 'username' in request.session :
+        #print('admin seession delected')
         del request.session['username']
-    #logout(request)
         return redirect('homepage')
 
 
     #admin home page
 @never_cache
 def admin_userlist(request):
-    #if 'username' in request.session :
+    #if 'admin_name' in request.session :
         userlist = userdetails.objects.all().order_by('id')
         #customers = Customer.objects.all().order_by('id')
         return render(request,'admin_userlist.html',{'tablelist': userlist})
+        #return redirect('admin_userlist')
+    #else :
+        #return render(request,'adminlogin.html')
 
 
 
@@ -156,7 +156,11 @@ def update_user(request):
         #userupdate.save()
         return redirect('admin_userlist')
     else:  
-        return render(request,'update_user.html')
+        id=request.GET['uid']
+        member=userdetails.objects.filter(id=id)
+        for i in member:
+            print(i.username)
+        return render(request,'update_user.html',{'updateuser':member})
 
 
     

@@ -28,26 +28,19 @@
       <div class="card-body py-5 px-md-5">
   
         <div class="row d-flex justify-content-center">
-          <div class="col-lg-8">
-            <h2 class="fw-bold mb-5">Login now</h2>
+          <div class="col-lg-4">
+            <h2 class="fw-bold mb-5 ms-5">Login now</h2>
+            <div style="width: 400px;">
             <form method ='POST' action="" >
               {% csrf_token %}
               <!-- 2 column grid layout with text inputs for the first and last names -->
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
+              
+                
+                  <div class="form-outline mb-4">
                     <input type="text" id="form3Example1" class="form-control" name="username">
                     <label class="form-label" for="form3Example1">First name</label>
                   </div>
-                </div>
                
-  
-              <!-- Email input
-              <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" name="email" />
-                <label class="form-label" for="form3Example3">Email address</label>
-              </div> -->
-  
               <!-- Password input -->
               <div class="form-outline mb-4">
                 <input type="password" id="form3Example4" class="form-control" name="password"/>
@@ -58,24 +51,30 @@
               
   
               <!-- Submit button -->
+              
               <button type="submit" class="btn btn-primary btn-block mb-4">
                 Login
               </button>
-              <a href =" {% url 'signuppage' %}" class="btn text-dark px-0" style="background-color:rgb(0, 204, 255) ; border-radius: 50px;">
-                <i calss="btn text-secondary ">Don't have account?? Sign up now</i>
+              <div style="width: 400px;">
+              <a href =" {% url 'signuppage' %}" >
+                Don't have account?? Sign up now
               </a>
-              <a href =" {% url 'adminlogin' %}" class="btn text-dark px-0" style="background-color:rgb(44, 113, 131) ; border-radius: 50px;">
+              </div>
+              <div>
+              <a href =" {% url 'adminlogin' %}" class="btn text-dark px-0" style="background-color:rgb(44, 113, 131) ; border-radius: 5px;">
                 <i calss="btn text-secondary ">Admin </i>
               </a>
-  
+               </div>
 
               <!-- Register buttons -->
              
               
             </form>
           </div>
+          </div>
         </div>
       </div>
+    </div>
     </div>
   </section>
   <!-- Section: Design Block -->
